@@ -11,7 +11,9 @@ public class App {
         int k = 3; // Nombre max d'allumettes enlevables
         int determinerJoueur = 0; // Jeton de definition du joueur
         char reponse = ' '; // reponse de reprise ou non d'une partie
-        String joueur = new String();  
+        Joueur joueur1 = new Joueur(1,"Joueur 1");
+        Joueur joueur2 = new Joueur(2,"Joueur 2");
+        String joueur = new String();
         // Fin d'initialisation des variables
         
         System.out.println("Le nombre initial d'allumettes est de "+ m +"!");
@@ -21,10 +23,10 @@ public class App {
         do{ // Tant que l'utilisateur envoie le char 'O', on execute cette boucle
         	m_current = m;
             do{ // Tant que le nbre d'allumettes est > que O on execute cette boucle
-                if (determinerJoueur % 2 == 0 || determinerJoueur == 0) // Permet de switcher les joueurs
-                    joueur = "Joueur 1";
+                if (determinerJoueur % 2 == joueur1.getNumber()-1 || determinerJoueur == joueur1.getNumber()-1) // Permet de switcher les joueurs
+                    joueur = joueur1.getNom();
                 else
-                    joueur = "Joueur 2";
+                    joueur = joueur2.getNom();
                 determinerJoueur++;
                 
                 System.out.println(joueur+" combien d'allumettes souhaitez vous retirer?");
@@ -34,7 +36,7 @@ public class App {
                 if (nbreaenlever > 3 || nbreaenlever < 1)
                 {
                     nbreaenlever = 0;
-                    System.out.println("Impossible d'effectuer cette operation (le nombre d'allumettes à enlever est erroné)");
+                    System.out.println("Impossible d'effectuer cette operation (le nombre d'allumettes a enlever est errone)");
                     System.out.println(joueur+" passe son tour!");
                 }
                 if (determinerJoueur == 1) // L'incrementation a deja� eu lieu ci-dessus donc la variable vaut 1 au départ
@@ -49,10 +51,10 @@ public class App {
                 System.out.println("--------------------------------------------");
 
             }while(m_current > 0);
-            if (joueur == "Joueur 1" )
-                joueur = "Joueur 2";
+            if (joueur == joueur1.getNom() )
+                joueur = joueur2.getNom();
             else
-                joueur = "Joueur 1";
+                joueur = joueur1.getNom();
             System.out.println(joueur+" a gagne la partie!");
             System.out.println("--------------------------");
             System.out.println("Voulez vous rejouer? (O/N)");
