@@ -1,0 +1,20 @@
+    private NetworkHandler networkHandler;
+    private String packetType;
+    private int removedCard;
+    private int leaveCard;
+    private int playerId;
+    
+    public void updateStateFromNetwork(String packet) {
+
+        // i receive packet
+    	String [] packetInfos = packet.split(",");
+    	
+    	this.packetType = packetInfos[0];
+    	
+    	if(packetType == "PLAY") {
+        	this.removedCard = Integer.parseInt(packetInfos[1]);
+            this.leaveCard = Integer.parseInt(packetInfos[2]);
+            this.playerId = Integer.parseInt(packetInfos[3]);
+    	}
+
+    }
